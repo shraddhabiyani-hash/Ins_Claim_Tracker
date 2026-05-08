@@ -31,8 +31,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-  /* HEADER */
-  .header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 24px; position: sticky; top: 0; z-index: 100; }
+  .header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 24px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
   .header-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 58px; }
   .logo { display: flex; align-items: center; gap: 10px; }
   .logo-icon { width: 32px; height: 32px; background: var(--blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
@@ -41,37 +40,17 @@
   .logo-sub { font-size: 11px; color: var(--text-3); font-weight: 400; }
   .header-badge { font-size: 11px; background: var(--green-light); color: var(--green); border-radius: 20px; padding: 3px 10px; font-weight: 500; }
 
-  /* MAIN */
   .main { max-width: 860px; margin: 0 auto; padding: 28px 24px 60px; }
 
-  /* TABS */
   .tabs { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 4px; margin-bottom: 24px; box-shadow: var(--shadow); }
   .tab { flex: 1; padding: 9px 12px; border: none; background: none; border-radius: calc(var(--radius) - 2px); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: var(--text-2); cursor: pointer; transition: all .18s; text-align: center; }
   .tab:hover { background: var(--bg); color: var(--text); }
   .tab.active { background: var(--blue); color: #fff; box-shadow: 0 2px 8px rgba(26,86,219,.25); }
 
-  /* CARDS */
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; margin-bottom: 16px; box-shadow: var(--shadow); }
   .card-title { font-size: 13px; font-weight: 600; color: var(--text-2); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
   .card-title .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
 
-  /* SETUP STEPS */
-  .setup-steps { display: flex; flex-direction: column; gap: 14px; }
-  .step { display: flex; gap: 14px; align-items: flex-start; }
-  .step-num { min-width: 26px; height: 26px; border-radius: 50%; background: var(--blue-light); color: var(--blue); font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; margin-top: 1px; flex-shrink: 0; }
-  .step-body { font-size: 13.5px; color: var(--text); line-height: 1.65; }
-  .step-body a { color: var(--blue); text-decoration: none; font-weight: 500; }
-  .step-body a:hover { text-decoration: underline; }
-  .step-body strong { font-weight: 600; }
-  .step-note { font-size: 12px; color: var(--text-3); margin-top: 3px; }
-
-  /* CODE BLOCK */
-  .code-wrap { background: #0F172A; border-radius: var(--radius-sm); padding: 14px 16px; margin: 10px 0 6px; position: relative; overflow: hidden; }
-  .code-wrap pre { font-family: 'DM Mono', monospace; font-size: 11.5px; color: #94A3B8; white-space: pre-wrap; word-break: break-all; line-height: 1.7; max-height: 200px; overflow-y: auto; }
-  .copy-btn { position: absolute; top: 10px; right: 10px; padding: 4px 12px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15); border-radius: 5px; color: #CBD5E1; font-size: 11px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .15s; }
-  .copy-btn:hover { background: rgba(255,255,255,.2); color: #fff; }
-
-  /* FORM */
   .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 14px; }
   .form-group { display: flex; flex-direction: column; gap: 5px; }
   .form-group.span2 { grid-column: span 2; }
@@ -79,13 +58,8 @@
   input, select, textarea { padding: 8px 11px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--surface); transition: border .15s; width: 100%; }
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,86,219,.1); }
   textarea { min-height: 120px; resize: vertical; }
-  input.filled, select.filled { border-color: var(--green); background: var(--green-light); color: #065F46; }
+  input.filled { border-color: var(--green); background: var(--green-light); color: #065F46; }
 
-  /* URL INPUT */
-  .url-row { display: flex; gap: 8px; }
-  .url-row input { flex: 1; font-family: 'DM Mono', monospace; font-size: 12px; }
-
-  /* BUTTONS */
   .btn { padding: 9px 20px; border: none; border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; transition: all .18s; white-space: nowrap; }
   .btn:disabled { opacity: .45; cursor: not-allowed; }
   .btn-primary { background: var(--blue); color: #fff; box-shadow: 0 2px 8px rgba(26,86,219,.2); }
@@ -96,26 +70,20 @@
   .btn-ghost:hover { background: var(--bg); }
   .btn-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
-  /* SPINNER */
   .spinner { width: 14px; height: 14px; border: 2px solid rgba(255,255,255,.35); border-top-color: #fff; border-radius: 50%; animation: spin .65s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* ALERTS */
   .alert { padding: 10px 14px; border-radius: var(--radius-sm); font-size: 13px; display: flex; align-items: center; gap: 8px; margin-top: 10px; }
   .alert-success { background: var(--green-light); color: var(--green); border: 1px solid #A7F3D0; }
   .alert-warn { background: var(--amber-light); color: var(--amber); border: 1px solid #FDE68A; }
   .alert-error { background: var(--red-light); color: var(--red); border: 1px solid #FCA5A5; }
-  .alert-info { background: var(--blue-light); color: var(--blue); border: 1px solid #BFDBFE; }
 
-  /* NOTICE STRIP */
-  .notice-strip { font-size: 12px; color: var(--text-3); background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 13px; margin-top: 10px; line-height: 1.5; }
+  .guide-step { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 14px; }
+  .guide-num { min-width: 26px; height: 26px; border-radius: 50%; background: var(--blue-light); color: var(--blue); font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .guide-text { font-size: 13.5px; color: var(--text); line-height: 1.65; }
 
-  /* TOAST */
   .toast { position: fixed; bottom: 24px; right: 24px; padding: 10px 18px; border-radius: var(--radius); font-size: 13px; font-weight: 500; color: #fff; opacity: 0; transition: opacity .25s, transform .25s; transform: translateY(8px); pointer-events: none; z-index: 9999; box-shadow: var(--shadow-md); }
   .toast.show { opacity: 1; transform: translateY(0); }
-
-  /* SECTION DIVIDER */
-  .divider { height: 1px; background: var(--border); margin: 16px 0; }
 
   @media(max-width: 600px) {
     .main { padding: 16px 14px 50px; }
@@ -144,121 +112,12 @@
 <div class="main">
 
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('add')">⚙ Add Claims</button>
+    <button class="tab active" onclick="switchTab('add')">+ Add Claim</button>
     <button class="tab" onclick="switchTab('guide')">? How to use</button>
   </div>
 
-  <!-- =================== SETUP TAB =================== -->
-  <div id="tab-setup">
-    <div class="card">
-      <div class="card-title"><span class="dot"></span>Step 1 — Create your Google Sheet</div>
-      <div class="setup-steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-body">Go to <a href="https://sheets.google.com" target="_blank">sheets.google.com</a> → click <strong>Blank spreadsheet</strong> → rename it <strong>Insurance Claims</strong></div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-body">Click <strong>Share</strong> (top right) → add your team members' Gmail IDs → set role to <strong>Editor</strong> → click Done</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title"><span class="dot"></span>Step 2 — Add the Apps Script</div>
-      <div class="setup-steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-body">In your Sheet → click <strong>Extensions</strong> (top menu) → <strong>Apps Script</strong></div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-body">Delete all existing code in the editor, then click the button below to copy the script → paste it in</div>
-        </div>
-      </div>
-      <div class="code-wrap">
-        <pre id="scriptText">function doPost(e) {
-  try {
-    var data = JSON.parse(e.postData.contents);
-    var ss = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = ss.getSheetByName("Claims") || ss.getActiveSheet();
-    if (sheet.getLastRow() === 0) {
-      sheet.appendRow(["Claim Ref","Date Received","Claimant Name",
-        "Policy No.","Insurer","Loss Type","Est. Amount",
-        "Survey Location","Contact","Survey Date",
-        "Surveyor","Status","Remarks","Added On"]);
-      sheet.getRange(1,1,1,14)
-        .setFontWeight("bold")
-        .setBackground("#1A56DB")
-        .setFontColor("#FFFFFF");
-      sheet.setFrozenRows(1);
-    }
-    sheet.appendRow([
-      data.ref||"", data.date||"", data.name||"",
-      data.policy||"", data.insurer||"", data.losstype||"",
-      data.amount||"", data.location||"", data.contact||"",
-      data.surveydate||"", data.surveyor||"",
-      data.status||"Pending", data.remarks||"",
-      new Date().toLocaleString()
-    ]);
-    return ContentService
-      .createTextOutput(JSON.stringify({status:"success"}))
-      .setMimeType(ContentService.MimeType.JSON);
-  } catch(err) {
-    return ContentService
-      .createTextOutput(JSON.stringify({status:"error",message:err.toString()}))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-}</pre>
-        <button class="copy-btn" onclick="copyScript()">Copy</button>
-      </div>
-      <div class="setup-steps" style="margin-top:14px">
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-body">Click <strong>Save</strong> (💾 icon or Ctrl+S) → then click <strong>Deploy → New deployment</strong></div>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <div class="step-body">
-            Set these options:<br>
-            • Type: <strong>Web app</strong><br>
-            • Execute as: <strong>Me</strong><br>
-            • Who has access: <strong>Anyone</strong><br>
-            → Click <strong>Deploy</strong>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">5</div>
-          <div class="step-body">Google will show a warning screen → click <strong>Advanced</strong> → <strong>Go to project (unsafe)</strong> → <strong>Allow</strong><br>
-            <span class="step-note">This is safe — it's your own script on your own account.</span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">6</div>
-          <div class="step-body">Copy the <strong>Web App URL</strong> that appears (starts with https://script.google.com/macros/s/...)</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title"><span class="dot"></span>Step 3 — Connect this tool</div>
-      <p style="font-size:13.5px;color:var(--text-2);margin-bottom:12px">Paste your Web App URL below and save. Do this once on each device/browser.</p>
-      <div class="url-row">
-        <input id="webAppUrl" type="text" placeholder="https://script.google.com/macros/s/.../exec" />
-        <button class="btn btn-primary" onclick="saveUrl()">Save & Connect</button>
-      </div>
-      <div id="connectMsg"></div>
-      <div class="notice-strip">🔒 Your URL is stored only in this browser. It is never sent anywhere except directly to your Google Sheet.</div>
-    </div>
-  </div>
-
-  <!-- =================== ADD CLAIM TAB =================== -->
-  <div id="tab-add" style="display:none">
-
-    <div id="urlMissing" style="display:none" class="alert alert-warn">
-      ⚠ Web App URL not set. Go to the <strong>Setup tab</strong> and complete Step 3 first.
-    </div>
-
+  <!-- ADD CLAIM TAB -->
+  <div id="tab-add">
     <div class="card">
       <div class="card-title"><span class="dot"></span>Paste claim email</div>
       <div class="form-group">
@@ -273,7 +132,7 @@ Works with any format — formal emails, casual messages, forwarded texts."></te
         <button class="btn btn-primary" id="extractBtn" onclick="extractClaim()">
           <span id="extractBtnContent">✦ Extract with AI</span>
         </button>
-        <div id="extractNotice" style="display:none" class="alert alert-success" style="margin:0">✓ Fields auto-filled — review below</div>
+        <div id="extractNotice" style="display:none" class="alert alert-success">✓ Fields auto-filled — review below</div>
       </div>
     </div>
 
@@ -347,107 +206,67 @@ Works with any format — formal emails, casual messages, forwarded texts."></te
     </div>
   </div>
 
-  <!-- =================== GUIDE TAB =================== -->
+  <!-- GUIDE TAB -->
   <div id="tab-guide" style="display:none">
     <div class="card">
       <div class="card-title"><span class="dot"></span>Daily workflow</div>
-      <div class="setup-steps">
-        <div class="step"><div class="step-num">1</div><div class="step-body">Open this page (bookmark it for quick access)</div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-body">Go to <strong>Add Claim</strong> tab → paste the claim email or message</div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-body">Click <strong>Extract with AI</strong> — all fields fill automatically</div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-body">Review the fields, make any corrections</div></div>
-        <div class="step"><div class="step-num">5</div><div class="step-body">Click <strong>Save to Google Sheet</strong> — done! The row appears in the shared sheet instantly</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title"><span class="dot"></span>Sharing with team</div>
-      <div class="setup-steps">
-        <div class="step"><div class="step-num">•</div><div class="step-body">Share this page's URL with your team via WhatsApp or email</div></div>
-        <div class="step"><div class="step-num">•</div><div class="step-body">Each person needs to paste the <strong>Web App URL</strong> in the Setup tab once on their device</div></div>
-        <div class="step"><div class="step-num">•</div><div class="step-body">All claims go into the <strong>same shared Google Sheet</strong> — visible to everyone in real time</div></div>
-        <div class="step"><div class="step-num">•</div><div class="step-body">Open your Google Sheet anytime to view, filter, sort, or export claims</div></div>
-      </div>
+      <div class="guide-step"><div class="guide-num">1</div><div class="guide-text">Open this page (bookmark it or save the link on your phone)</div></div>
+      <div class="guide-step"><div class="guide-num">2</div><div class="guide-text">Paste the claim email or WhatsApp message into the box</div></div>
+      <div class="guide-step"><div class="guide-num">3</div><div class="guide-text">Click <strong>Extract with AI</strong> — all fields fill automatically</div></div>
+      <div class="guide-step"><div class="guide-num">4</div><div class="guide-text">Review the fields, correct anything if needed</div></div>
+      <div class="guide-step"><div class="guide-num">5</div><div class="guide-text">Click <strong>Save to Google Sheet</strong> — row appears in the shared sheet instantly for everyone</div></div>
     </div>
     <div class="card">
       <div class="card-title"><span class="dot"></span>Cost breakdown</div>
-      <div class="setup-steps">
-        <div class="step"><div class="step-num">✓</div><div class="step-body">This tool — <strong>Free</strong> (open in any browser)</div></div>
-        <div class="step"><div class="step-num">✓</div><div class="step-body">Google Sheets — <strong>Free</strong> (with Gmail account)</div></div>
-        <div class="step"><div class="step-num">✓</div><div class="step-body">Google Apps Script — <strong>Free</strong> (built into Google Sheets)</div></div>
-        <div class="step"><div class="step-num">✓</div><div class="step-body">No credit card, no subscriptions, no hidden costs</div></div>
-      </div>
+      <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text">This tool — <strong>Free</strong></div></div>
+      <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text">Google Sheets — <strong>Free</strong> (with Gmail account)</div></div>
+      <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text">Google Apps Script — <strong>Free</strong></div></div>
+      <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text">No credit card, no subscriptions, no hidden costs</div></div>
     </div>
   </div>
 
-</div><!-- end main -->
+</div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-// ---- UTILS ----
-function toast(msg, type) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.style.background = type==='err' ? '#9B1C1C' : type==='warn' ? '#B45309' : '#057A55';
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 2800);
-}
+  // ============================================================
+  // STEP: Replace the text below with your Apps Script URL
+  // It looks like: https://script.google.com/macros/s/ABC.../exec
+  // ============================================================
+  var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbykNT6pGx51djhna-XvUDRLAiW38wa3q_CPC9L_N-PZZjoSsj9IKLaD0pB_2Af0elqv/exec';
+  // ============================================================
 
-function switchTab(t) {
-  ['setup','add','guide'].forEach(n => {
-    document.getElementById('tab-'+n).style.display = n===t ? 'block' : 'none';
-  });
-  document.querySelectorAll('.tab').forEach((el,i) => {
-    el.classList.toggle('active', ['setup','add','guide'][i] === t);
-  });
-  if(t==='add') checkUrl();
-}
-
-function getSavedUrl() {
-  try { return https://script.google.com/macros/s/AKfycbykNT6pGx51djhna-XvUDRLAiW38wa3q_CPC9L_N-PZZjoSsj9IKLaD0pB_2Af0elqv/exec; } catch(e) { return ''; }
-}
-
-function checkUrl() {
-  const url = getSavedUrl();
-  document.getElementById('urlMissing').style.display = url ? 'none' : 'flex';
-}
-
-// ---- SETUP ----
-function copyScript() {
-  const code = document.getElementById('scriptText').textContent;
-  navigator.clipboard.writeText(code)
-    .then(() => toast('Script copied to clipboard'))
-    .catch(() => toast('Select the code manually and copy', 'warn'));
-}
-
-function saveUrl() {
-  const url = document.getElementById('webAppUrl').value.trim();
-  if (!url || !url.includes('script.google.com')) {
-    document.getElementById('connectMsg').innerHTML =
-      '<div class="alert alert-error" style="margin-top:10px">⚠ Please paste a valid Apps Script URL (should start with https://script.google.com/macros/s/...)</div>';
-    return;
+  function toast(msg, type) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.style.background = type==='err' ? '#9B1C1C' : type==='warn' ? '#B45309' : '#057A55';
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 2800);
   }
-  try { localStorage.setItem('claimsWebAppUrl', url); } catch(e){}
-  document.getElementById('connectMsg').innerHTML =
-    '<div class="alert alert-success" style="margin-top:10px">✓ Connected! Switch to the "Add Claim" tab to start logging claims.</div>';
-  toast('URL saved successfully');
-}
 
-// ---- EXTRACT ----
-async function extractClaim() {
-  const email = document.getElementById('emailInput').value.trim();
-  if (!email) { toast('Please paste an email first', 'warn'); return; }
+  function switchTab(t) {
+    ['add','guide'].forEach(n => {
+      document.getElementById('tab-'+n).style.display = n===t ? 'block' : 'none';
+    });
+    document.querySelectorAll('.tab').forEach((el,i) => {
+      el.classList.toggle('active', ['add','guide'][i] === t);
+    });
+  }
 
-  const btn = document.getElementById('extractBtn');
-  const content = document.getElementById('extractBtnContent');
-  btn.disabled = true;
-  content.innerHTML = '<div class="spinner"></div> Extracting...';
+  async function extractClaim() {
+    const email = document.getElementById('emailInput').value.trim();
+    if (!email) { toast('Please paste an email first', 'warn'); return; }
 
-  const prompt = `You are an insurance claims data extractor. Extract fields from this email/message and respond ONLY with a valid JSON object — no markdown, no explanation, nothing else.
+    const btn = document.getElementById('extractBtn');
+    const content = document.getElementById('extractBtnContent');
+    btn.disabled = true;
+    content.innerHTML = '<div class="spinner"></div> Extracting...';
 
+    const prompt = `You are an insurance claims data extractor. Extract fields from this email/message and respond ONLY with a valid JSON object — no markdown, no explanation, nothing else.
 {
   "ref": "claim reference number if mentioned, else empty string",
-  "date": "date in YYYY-MM-DD format (email date or incident date)",
+  "date": "date in YYYY-MM-DD format",
   "name": "insured or claimant full name",
   "policy": "policy number",
   "insurer": "insurance company name",
@@ -458,102 +277,94 @@ async function extractClaim() {
   "surveyor": "surveyor name if mentioned, else empty string",
   "remarks": "any other important notes"
 }
-
 Email/message:
 ${email}`;
 
-  try {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 800,
-        messages: [{ role: "user", content: prompt }]
-      })
-    });
-    const data = await res.json();
-    const raw = data.content.map(c => c.text || '').join('');
-    const parsed = JSON.parse(raw.replace(/```json|```/g,'').trim());
+    try {
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: 800,
+          messages: [{ role: "user", content: prompt }]
+        })
+      });
+      const data = await res.json();
+      const raw = data.content.map(c => c.text || '').join('');
+      const parsed = JSON.parse(raw.replace(/```json|```/g,'').trim());
 
-    ['ref','date','name','policy','insurer','losstype','amount','location','contact','surveyor','remarks'].forEach(f => {
-      const el = document.getElementById('f_' + f);
-      if (el && parsed[f]) { el.value = parsed[f]; el.classList.add('filled'); }
-    });
-    document.getElementById('extractNotice').style.display = 'flex';
-    toast('Fields extracted successfully');
-  } catch(e) {
-    toast('Extraction failed — please fill fields manually', 'warn');
+      ['ref','date','name','policy','insurer','losstype','amount','location','contact','surveyor','remarks'].forEach(f => {
+        const el = document.getElementById('f_' + f);
+        if (el && parsed[f]) { el.value = parsed[f]; el.classList.add('filled'); }
+      });
+      document.getElementById('extractNotice').style.display = 'flex';
+      toast('Fields extracted successfully');
+    } catch(e) {
+      toast('Extraction failed — please fill fields manually', 'warn');
+    }
+
+    btn.disabled = false;
+    content.innerHTML = '✦ Extract with AI';
   }
 
-  btn.disabled = false;
-  content.innerHTML = '✦ Extract with AI';
-}
+  async function saveToSheet() {
+    if (!WEB_APP_URL || WEB_APP_URL === 'PASTE_YOUR_APPS_SCRIPT_URL_HERE') {
+      toast('Sheet not connected. Contact your admin.', 'err'); return;
+    }
+    const g = id => document.getElementById(id).value.trim();
+    if (!g('f_name') && !g('f_policy')) {
+      toast('Please add at least claimant name or policy number', 'warn'); return;
+    }
 
-// ---- SAVE ----
-async function saveToSheet() {
-  const url = getSavedUrl();
-  if (!url) { toast('Set up your Web App URL first (Setup tab)', 'warn'); return; }
+    const payload = {
+      ref: g('f_ref') || ('CLM-' + new Date().getTime().toString().slice(-6)),
+      date: g('f_date') || new Date().toISOString().split('T')[0],
+      name: g('f_name'), policy: g('f_policy'), insurer: g('f_insurer'),
+      losstype: g('f_losstype'), amount: g('f_amount'), location: g('f_location'),
+      contact: g('f_contact'), surveydate: g('f_surveydate'),
+      surveyor: g('f_surveyor'), status: g('f_status'), remarks: g('f_remarks')
+    };
 
-  const g = id => document.getElementById(id).value.trim();
-  if (!g('f_name') && !g('f_policy')) {
-    toast('Please add at least claimant name or policy number', 'warn'); return;
+    const btn = document.getElementById('saveBtn');
+    const content = document.getElementById('saveBtnContent');
+    btn.disabled = true;
+    content.innerHTML = '<div class="spinner"></div> Saving...';
+
+    try {
+      await fetch(WEB_APP_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      document.getElementById('saveStatus').innerHTML =
+        '<div class="alert alert-success">✓ Claim saved to Google Sheet! Open your sheet to verify.</div>';
+      toast('Saved to Google Sheet');
+      clearFields();
+      setTimeout(() => document.getElementById('saveStatus').innerHTML = '', 5000);
+    } catch(e) {
+      document.getElementById('saveStatus').innerHTML =
+        '<div class="alert alert-error">✕ Could not reach sheet. Please try again.</div>';
+      toast('Save failed', 'err');
+    }
+
+    btn.disabled = false;
+    content.innerHTML = '↑ Save to Google Sheet';
   }
 
-  const payload = {
-    ref: g('f_ref') || ('CLM-' + new Date().getTime().toString().slice(-6)),
-    date: g('f_date') || new Date().toISOString().split('T')[0],
-    name: g('f_name'), policy: g('f_policy'), insurer: g('f_insurer'),
-    losstype: g('f_losstype'), amount: g('f_amount'), location: g('f_location'),
-    contact: g('f_contact'), surveydate: g('f_surveydate'),
-    surveyor: g('f_surveyor'), status: g('f_status'), remarks: g('f_remarks')
-  };
-
-  const btn = document.getElementById('saveBtn');
-  const content = document.getElementById('saveBtnContent');
-  btn.disabled = true;
-  content.innerHTML = '<div class="spinner"></div> Saving...';
-
-  try {
-    await fetch(url, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+  function clearFields() {
+    ['f_ref','f_name','f_policy','f_insurer','f_losstype','f_amount','f_location','f_contact','f_surveyor','f_remarks'].forEach(id => {
+      const el = document.getElementById(id); el.value = ''; el.classList.remove('filled');
     });
-    document.getElementById('saveStatus').innerHTML =
-      '<div class="alert alert-success" style="margin-top:10px">✓ Claim saved to Google Sheet! Open your sheet to verify.</div>';
-    toast('Saved to Google Sheet');
-    clearFields();
-    setTimeout(() => document.getElementById('saveStatus').innerHTML = '', 5000);
-  } catch(e) {
-    document.getElementById('saveStatus').innerHTML =
-      '<div class="alert alert-error" style="margin-top:10px">✕ Could not reach sheet. Check your Web App URL in Setup tab.</div>';
-    toast('Save failed', 'err');
+    document.getElementById('f_date').value = '';
+    document.getElementById('f_surveydate').value = '';
+    document.getElementById('f_status').value = 'Pending';
+    document.getElementById('emailInput').value = '';
+    document.getElementById('extractNotice').style.display = 'none';
   }
 
-  btn.disabled = false;
-  content.innerHTML = '↑ Save to Google Sheet';
-}
-
-// ---- CLEAR ----
-function clearFields() {
-  ['f_ref','f_name','f_policy','f_insurer','f_losstype','f_amount','f_location','f_contact','f_surveyor','f_remarks'].forEach(id => {
-    const el = document.getElementById(id); el.value = ''; el.classList.remove('filled');
-  });
-  document.getElementById('f_date').value = '';
-  document.getElementById('f_surveydate').value = '';
-  document.getElementById('f_status').value = 'Pending';
-  document.getElementById('emailInput').value = '';
-  document.getElementById('extractNotice').style.display = 'none';
-}
-
-// ---- INIT ----
-document.getElementById('f_date').value = new Date().toISOString().split('T')[0];
-try {
-  const saved = localStorage.getItem('claimsWebAppUrl');
-  if (saved) document.getElementById('webAppUrl').value = saved;
-} catch(e){}
+  document.getElementById('f_date').value = new Date().toISOString().split('T')[0];
 </script>
 </body>
 </html>
