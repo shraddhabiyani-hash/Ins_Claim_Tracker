@@ -57,7 +57,7 @@
   label { font-size: 11.5px; font-weight: 500; color: var(--text-2); }
   input, select, textarea { padding: 8px 11px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--surface); transition: border .15s; width: 100%; }
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,86,219,.1); }
-  textarea { min-height: 120px; resize: vertical; }
+  textarea { min-height: 130px; resize: vertical; }
   input.filled { border-color: var(--green); background: var(--green-light); color: #065F46; }
 
   .btn { padding: 9px 20px; border: none; border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; transition: all .18s; white-space: nowrap; }
@@ -210,11 +210,17 @@ Works with any format — formal emails, casual messages, forwarded texts."></te
   <div id="tab-guide" style="display:none">
     <div class="card">
       <div class="card-title"><span class="dot"></span>Daily workflow</div>
-      <div class="guide-step"><div class="guide-num">1</div><div class="guide-text">Open this page (bookmark it or save the link on your phone)</div></div>
+      <div class="guide-step"><div class="guide-num">1</div><div class="guide-text">Open this page and bookmark it on your phone or laptop</div></div>
       <div class="guide-step"><div class="guide-num">2</div><div class="guide-text">Paste the claim email or WhatsApp message into the box</div></div>
       <div class="guide-step"><div class="guide-num">3</div><div class="guide-text">Click <strong>Extract with AI</strong> — all fields fill automatically</div></div>
-      <div class="guide-step"><div class="guide-num">4</div><div class="guide-text">Review the fields, correct anything if needed</div></div>
-      <div class="guide-step"><div class="guide-num">5</div><div class="guide-text">Click <strong>Save to Google Sheet</strong> — row appears in the shared sheet instantly for everyone</div></div>
+      <div class="guide-step"><div class="guide-num">4</div><div class="guide-text">Review the fields and correct anything if needed</div></div>
+      <div class="guide-step"><div class="guide-num">5</div><div class="guide-text">Click <strong>Save to Google Sheet</strong> — row appears instantly with a unique ID like CLM-0001, CLM-0002...</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>About the unique ID</div>
+      <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text">Every claim gets a unique serial ID — <strong>CLM-0001, CLM-0002</strong> and so on</div></div>
+      <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text">ID is generated automatically by Google Sheet — no duplicates even if two people save at the same time</div></div>
+      <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text">Use this ID to track, reference, or follow up on any claim</div></div>
     </div>
     <div class="card">
       <div class="card-title"><span class="dot"></span>Cost breakdown</div>
@@ -230,12 +236,7 @@ Works with any format — formal emails, casual messages, forwarded texts."></te
 <div class="toast" id="toast"></div>
 
 <script>
-  // ============================================================
-  // STEP: Replace the text below with your Apps Script URL
-  // It looks like: https://script.google.com/macros/s/ABC.../exec
-  // ============================================================
-  var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbykNT6pGx51djhna-XvUDRLAiW38wa3q_CPC9L_N-PZZjoSsj9IKLaD0pB_2Af0elqv/exec';
-  // ============================================================
+  var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyJZNTx34375l8VpcjaXsjGDxNz9vnloQ-IEecYXf7sxT4f16zurUAcOVXJE2jRyb9y/exec';
 
   function toast(msg, type) {
     const el = document.getElementById('toast');
@@ -309,16 +310,13 @@ ${email}`;
   }
 
   async function saveToSheet() {
-    if (!WEB_APP_URL || WEB_APP_URL === 'PASTE_YOUR_APPS_SCRIPT_URL_HERE') {
-      toast('Sheet not connected. Contact your admin.', 'err'); return;
-    }
     const g = id => document.getElementById(id).value.trim();
     if (!g('f_name') && !g('f_policy')) {
       toast('Please add at least claimant name or policy number', 'warn'); return;
     }
 
     const payload = {
-      ref: g('f_ref') || ('CLM-' + new Date().getTime().toString().slice(-6)),
+      ref: g('f_ref'),
       date: g('f_date') || new Date().toISOString().split('T')[0],
       name: g('f_name'), policy: g('f_policy'), insurer: g('f_insurer'),
       losstype: g('f_losstype'), amount: g('f_amount'), location: g('f_location'),
@@ -339,7 +337,7 @@ ${email}`;
         body: JSON.stringify(payload)
       });
       document.getElementById('saveStatus').innerHTML =
-        '<div class="alert alert-success">✓ Claim saved to Google Sheet! Open your sheet to verify.</div>';
+        '<div class="alert alert-success">✓ Claim saved to Google Sheet with unique ID! Open your sheet to verify.</div>';
       toast('Saved to Google Sheet');
       clearFields();
       setTimeout(() => document.getElementById('saveStatus').innerHTML = '', 5000);
