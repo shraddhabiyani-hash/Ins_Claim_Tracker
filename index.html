@@ -32,7 +32,7 @@
   body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
   .header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 24px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
-  .header-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 58px; }
+  .header-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 58px; }
   .logo { display: flex; align-items: center; gap: 10px; }
   .logo-icon { width: 32px; height: 32px; background: var(--blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
   .logo-icon svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -40,7 +40,7 @@
   .logo-sub { font-size: 11px; color: var(--text-3); font-weight: 400; }
   .header-badge { font-size: 11px; background: var(--green-light); color: var(--green); border-radius: 20px; padding: 3px 10px; font-weight: 500; }
 
-  .main { max-width: 860px; margin: 0 auto; padding: 28px 24px 60px; }
+  .main { max-width: 900px; margin: 0 auto; padding: 28px 24px 60px; }
 
   .tabs { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 4px; margin-bottom: 24px; box-shadow: var(--shadow); }
   .tab { flex: 1; padding: 9px 12px; border: none; background: none; border-radius: calc(var(--radius) - 2px); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: var(--text-2); cursor: pointer; transition: all .18s; text-align: center; }
@@ -51,14 +51,31 @@
   .card-title { font-size: 13px; font-weight: 600; color: var(--text-2); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
   .card-title .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
 
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width:640px) { .two-col { grid-template-columns: 1fr; } }
+
   .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 14px; }
   .form-group { display: flex; flex-direction: column; gap: 5px; }
   .form-group.span2 { grid-column: span 2; }
   label { font-size: 11.5px; font-weight: 500; color: var(--text-2); }
   input, select, textarea { padding: 8px 11px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--surface); transition: border .15s; width: 100%; }
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,86,219,.1); }
-  textarea { min-height: 130px; resize: vertical; }
+  textarea { min-height: 160px; resize: vertical; }
   input.filled { border-color: var(--green); background: var(--green-light); color: #065F46; }
+
+  /* DROP ZONE */
+  .drop-zone { border: 2px dashed var(--border-strong); border-radius: var(--radius); padding: 24px 16px; text-align: center; cursor: pointer; transition: all .2s; background: var(--bg); min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+  .drop-zone:hover, .drop-zone.dragover { border-color: var(--blue); background: var(--blue-light); }
+  .drop-zone input[type=file] { display: none; }
+  .drop-icon { font-size: 28px; }
+  .drop-text { font-size: 13px; font-weight: 500; color: var(--text-2); }
+  .drop-sub { font-size: 11.5px; color: var(--text-3); }
+  .file-list { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+  .file-item { display: flex; align-items: center; justify-content: space-between; padding: 7px 11px; background: var(--blue-light); border: 1px solid #BFDBFE; border-radius: var(--radius-sm); font-size: 12px; color: var(--blue); }
+  .file-item-name { display: flex; align-items: center; gap: 7px; font-weight: 500; overflow: hidden; }
+  .file-item-name span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
+  .file-remove { background: none; border: none; cursor: pointer; color: var(--text-3); font-size: 14px; padding: 0 2px; }
+  .file-remove:hover { color: var(--red); }
 
   .btn { padding: 9px 20px; border: none; border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; transition: all .18s; white-space: nowrap; }
   .btn:disabled { opacity: .45; cursor: not-allowed; }
@@ -77,10 +94,14 @@
   .alert-success { background: var(--green-light); color: var(--green); border: 1px solid #A7F3D0; }
   .alert-warn { background: var(--amber-light); color: var(--amber); border: 1px solid #FDE68A; }
   .alert-error { background: var(--red-light); color: var(--red); border: 1px solid #FCA5A5; }
+  .alert-info { background: var(--blue-light); color: var(--blue); border: 1px solid #BFDBFE; }
 
   .guide-step { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 14px; }
   .guide-num { min-width: 26px; height: 26px; border-radius: 50%; background: var(--blue-light); color: var(--blue); font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
   .guide-text { font-size: 13.5px; color: var(--text); line-height: 1.65; }
+
+  .progress-bar { height: 4px; background: var(--border); border-radius: 4px; margin-top: 10px; overflow: hidden; display: none; }
+  .progress-fill { height: 100%; background: var(--blue); border-radius: 4px; transition: width .4s; }
 
   .toast { position: fixed; bottom: 24px; right: 24px; padding: 10px 18px; border-radius: var(--radius); font-size: 13px; font-weight: 500; color: #fff; opacity: 0; transition: opacity .25s, transform .25s; transform: translateY(8px); pointer-events: none; z-index: 9999; box-shadow: var(--shadow-md); }
   .toast.show { opacity: 1; transform: translateY(0); }
@@ -110,7 +131,6 @@
 </div>
 
 <div class="main">
-
   <div class="tabs">
     <button class="tab active" onclick="switchTab('add')">+ Add Claim</button>
     <button class="tab" onclick="switchTab('guide')">? How to use</button>
@@ -119,25 +139,41 @@
   <!-- ADD CLAIM TAB -->
   <div id="tab-add">
     <div class="card">
-      <div class="card-title"><span class="dot"></span>Paste claim email</div>
-      <div class="form-group">
-        <label>Email / message text</label>
-        <textarea id="emailInput" placeholder="Paste the full email, SMS, or WhatsApp message here.
+      <div class="card-title"><span class="dot"></span>Step 1 — Paste email &amp; upload attachments</div>
+      <div class="two-col">
+        <!-- Email text -->
+        <div class="form-group">
+          <label>Email / message text</label>
+          <textarea id="emailInput" placeholder="Paste the full email or WhatsApp message here.
 
-Claude AI will automatically extract: claimant name, policy number, insurer, loss type, estimated amount, survey location, contact details, and more.
+Can be a forwarded chain, formal letter, or casual message. Works with any format."></textarea>
+        </div>
 
-Works with any format — formal emails, casual messages, forwarded texts."></textarea>
+        <!-- File upload -->
+        <div>
+          <label style="display:block;margin-bottom:5px">Attachments (PDF or images) — optional</label>
+          <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+            <input type="file" id="fileInput" multiple accept=".pdf,image/*" onchange="handleFiles(this.files)" />
+            <div class="drop-icon">📎</div>
+            <div class="drop-text">Click to upload or drag &amp; drop</div>
+            <div class="drop-sub">PDF, JPG, PNG — multiple files supported</div>
+          </div>
+          <div class="file-list" id="fileList"></div>
+        </div>
       </div>
-      <div style="display:flex;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap">
+
+      <div id="progressBar" class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+
+      <div style="display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap">
         <button class="btn btn-primary" id="extractBtn" onclick="extractClaim()">
           <span id="extractBtnContent">✦ Extract with AI</span>
         </button>
-        <div id="extractNotice" style="display:none" class="alert alert-success">✓ Fields auto-filled — review below</div>
+        <div id="extractNotice" style="display:none" class="alert alert-success">✓ Fields auto-filled from email + attachments</div>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-title"><span class="dot"></span>Review &amp; edit extracted fields</div>
+      <div class="card-title"><span class="dot"></span>Step 2 — Review &amp; edit extracted fields</div>
       <div class="form-grid">
         <div class="form-group">
           <label>Claim ref no.</label>
@@ -149,7 +185,7 @@ Works with any format — formal emails, casual messages, forwarded texts."></te
         </div>
         <div class="form-group">
           <label>Claimant name</label>
-          <input id="f_name" placeholder="Full name" />
+          <input id="f_name" placeholder="Full name or company" />
         </div>
         <div class="form-group">
           <label>Policy number</label>
@@ -161,7 +197,7 @@ Works with any format — formal emails, casual messages, forwarded texts."></te
         </div>
         <div class="form-group">
           <label>Type of loss</label>
-          <input id="f_losstype" placeholder="Fire, Flood, Theft..." />
+          <input id="f_losstype" placeholder="Fire, Flood, Transit Damage..." />
         </div>
         <div class="form-group">
           <label>Estimated amount</label>
@@ -173,7 +209,7 @@ Works with any format — formal emails, casual messages, forwarded texts."></te
         </div>
         <div class="form-group">
           <label>Contact</label>
-          <input id="f_contact" placeholder="Phone or email" />
+          <input id="f_contact" placeholder="Name & phone" />
         </div>
         <div class="form-group">
           <label>Survey date</label>
@@ -200,7 +236,7 @@ Works with any format — formal emails, casual messages, forwarded texts."></te
         <button class="btn btn-success" id="saveBtn" onclick="saveToSheet()">
           <span id="saveBtnContent">↑ Save to Google Sheet</span>
         </button>
-        <button class="btn btn-ghost" onclick="clearFields()">Clear fields</button>
+        <button class="btn btn-ghost" onclick="clearAll()">Clear all</button>
       </div>
       <div id="saveStatus"></div>
     </div>
@@ -211,26 +247,25 @@ Works with any format — formal emails, casual messages, forwarded texts."></te
     <div class="card">
       <div class="card-title"><span class="dot"></span>Daily workflow</div>
       <div class="guide-step"><div class="guide-num">1</div><div class="guide-text">Open this page and bookmark it on your phone or laptop</div></div>
-      <div class="guide-step"><div class="guide-num">2</div><div class="guide-text">Paste the claim email or WhatsApp message into the box</div></div>
-      <div class="guide-step"><div class="guide-num">3</div><div class="guide-text">Click <strong>Extract with AI</strong> — all fields fill automatically</div></div>
-      <div class="guide-step"><div class="guide-num">4</div><div class="guide-text">Review the fields and correct anything if needed</div></div>
-      <div class="guide-step"><div class="guide-num">5</div><div class="guide-text">Click <strong>Save to Google Sheet</strong> — row appears instantly with a unique ID like CLM-0001, CLM-0002...</div></div>
+      <div class="guide-step"><div class="guide-num">2</div><div class="guide-text">Paste the claim email text into the left box</div></div>
+      <div class="guide-step"><div class="guide-num">3</div><div class="guide-text">Upload any attachments (PDF policy copy, damage photos) into the right box — <strong>optional but recommended</strong></div></div>
+      <div class="guide-step"><div class="guide-num">4</div><div class="guide-text">Click <strong>Extract with AI</strong> — Claude reads both the email and all attachments together</div></div>
+      <div class="guide-step"><div class="guide-num">5</div><div class="guide-text">Review extracted fields, make corrections if needed</div></div>
+      <div class="guide-step"><div class="guide-num">6</div><div class="guide-text">Click <strong>Save to Google Sheet</strong> — row appears instantly with a unique serial ID</div></div>
     </div>
     <div class="card">
-      <div class="card-title"><span class="dot"></span>About the unique ID</div>
-      <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text">Every claim gets a unique serial ID — <strong>CLM-0001, CLM-0002</strong> and so on</div></div>
-      <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text">ID is generated automatically by Google Sheet — no duplicates even if two people save at the same time</div></div>
-      <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text">Use this ID to track, reference, or follow up on any claim</div></div>
+      <div class="card-title"><span class="dot"></span>Supported file types</div>
+      <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text"><strong>PDF</strong> — policy copies, claim forms, survey reports, intimation letters</div></div>
+      <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text"><strong>Images</strong> (JPG, PNG) — damage photos, scanned documents, screenshots</div></div>
+      <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text">Multiple files can be uploaded at once — AI reads all of them</div></div>
     </div>
     <div class="card">
       <div class="card-title"><span class="dot"></span>Cost breakdown</div>
       <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text">This tool — <strong>Free</strong></div></div>
-      <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text">Google Sheets — <strong>Free</strong> (with Gmail account)</div></div>
-      <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text">Google Apps Script — <strong>Free</strong></div></div>
+      <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text">Google Sheets + Apps Script — <strong>Free</strong></div></div>
       <div class="guide-step"><div class="guide-num">✓</div><div class="guide-text">No credit card, no subscriptions, no hidden costs</div></div>
     </div>
   </div>
-
 </div>
 
 <div class="toast" id="toast"></div>
@@ -238,14 +273,18 @@ Works with any format — formal emails, casual messages, forwarded texts."></te
 <script>
   var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyJZNTx34375l8VpcjaXsjGDxNz9vnloQ-IEecYXf7sxT4f16zurUAcOVXJE2jRyb9y/exec';
 
+  var uploadedFiles = []; // {name, type, base64}
+
+  // ---- TOAST ----
   function toast(msg, type) {
     const el = document.getElementById('toast');
     el.textContent = msg;
     el.style.background = type==='err' ? '#9B1C1C' : type==='warn' ? '#B45309' : '#057A55';
     el.classList.add('show');
-    setTimeout(() => el.classList.remove('show'), 2800);
+    setTimeout(() => el.classList.remove('show'), 3000);
   }
 
+  // ---- TABS ----
   function switchTab(t) {
     ['add','guide'].forEach(n => {
       document.getElementById('tab-'+n).style.display = n===t ? 'block' : 'none';
@@ -255,31 +294,124 @@ Works with any format — formal emails, casual messages, forwarded texts."></te
     });
   }
 
+  // ---- DRAG & DROP ----
+  function handleDragOver(e) {
+    e.preventDefault();
+    document.getElementById('dropZone').classList.add('dragover');
+  }
+  function handleDragLeave(e) {
+    document.getElementById('dropZone').classList.remove('dragover');
+  }
+  function handleDrop(e) {
+    e.preventDefault();
+    document.getElementById('dropZone').classList.remove('dragover');
+    handleFiles(e.dataTransfer.files);
+  }
+
+  // ---- FILE HANDLING ----
+  function handleFiles(files) {
+    const bar = document.getElementById('progressBar');
+    const fill = document.getElementById('progressFill');
+    bar.style.display = 'block';
+    fill.style.width = '0%';
+
+    let processed = 0;
+    Array.from(files).forEach(file => {
+      // Validate type
+      if (!file.type.startsWith('image/') && file.type !== 'application/pdf') {
+        toast('Only PDF and image files supported', 'warn');
+        return;
+      }
+      // Max 10MB per file
+      if (file.size > 10 * 1024 * 1024) {
+        toast(file.name + ' is too large (max 10MB)', 'warn');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const base64 = e.target.result.split(',')[1];
+        uploadedFiles.push({ name: file.name, type: file.type, base64: base64 });
+        processed++;
+        fill.style.width = Math.round((processed / files.length) * 100) + '%';
+        if (processed === files.length) {
+          setTimeout(() => bar.style.display = 'none', 600);
+        }
+        renderFileList();
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function renderFileList() {
+    const el = document.getElementById('fileList');
+    if (!uploadedFiles.length) { el.innerHTML = ''; return; }
+    el.innerHTML = uploadedFiles.map((f, i) => {
+      const icon = f.type === 'application/pdf' ? '📄' : '🖼';
+      return `<div class="file-item">
+        <div class="file-item-name">${icon} <span>${f.name}</span></div>
+        <button class="file-remove" onclick="removeFile(${i})" title="Remove">✕</button>
+      </div>`;
+    }).join('');
+  }
+
+  function removeFile(i) {
+    uploadedFiles.splice(i, 1);
+    renderFileList();
+  }
+
+  // ---- EXTRACT ----
   async function extractClaim() {
     const email = document.getElementById('emailInput').value.trim();
-    if (!email) { toast('Please paste an email first', 'warn'); return; }
+    if (!email && uploadedFiles.length === 0) {
+      toast('Please paste an email or upload a file first', 'warn'); return;
+    }
 
     const btn = document.getElementById('extractBtn');
     const content = document.getElementById('extractBtnContent');
     btn.disabled = true;
-    content.innerHTML = '<div class="spinner"></div> Extracting...';
+    content.innerHTML = '<div class="spinner"></div> Reading & extracting...';
 
-    const prompt = `You are an insurance claims data extractor. Extract fields from this email/message and respond ONLY with a valid JSON object — no markdown, no explanation, nothing else.
+    // Build message content array
+    const msgContent = [];
+
+    // Add each file (PDF or image)
+    uploadedFiles.forEach(f => {
+      if (f.type === 'application/pdf') {
+        msgContent.push({
+          type: 'document',
+          source: { type: 'base64', media_type: 'application/pdf', data: f.base64 }
+        });
+      } else {
+        msgContent.push({
+          type: 'image',
+          source: { type: 'base64', media_type: f.type, data: f.base64 }
+        });
+      }
+    });
+
+    // Add text prompt
+    const emailSection = email ? `\n\nEMAIL / MESSAGE TEXT:\n${email}` : '';
+    msgContent.push({
+      type: 'text',
+      text: `You are an expert insurance claims data extractor. You have been given ${uploadedFiles.length > 0 ? 'one or more attachments (PDF/images) and/or' : ''} an email chain. Read ALL content carefully and extract the most relevant claim details.
+
+Respond ONLY with a valid JSON object — no markdown, no backticks, no explanation.
+
 {
-  "ref": "claim reference number if mentioned, else empty string",
-  "date": "date in YYYY-MM-DD format",
-  "name": "insured or claimant full name",
+  "ref": "claim reference number or CRN, else empty string",
+  "date": "date of loss or email date in YYYY-MM-DD format",
+  "name": "insured company or claimant full name",
   "policy": "policy number",
   "insurer": "insurance company name",
-  "losstype": "type of loss (Fire, Flood, Theft, Accident, etc.)",
+  "losstype": "cause or type of loss (Fire, Flood, Transit Damage, Theft, etc.)",
   "amount": "estimated loss amount exactly as stated",
-  "location": "survey location or address",
-  "contact": "contact phone number or email",
-  "surveyor": "surveyor name if mentioned, else empty string",
-  "remarks": "any other important notes"
+  "location": "survey location — city or address where loss occurred",
+  "contact": "contact person name and mobile number for survey coordination",
+  "surveyor": "surveyor or survey firm name if mentioned, else empty string",
+  "remarks": "brief description of loss or any other important notes"
 }
-Email/message:
-${email}`;
+${emailSection}`
+    });
 
     try {
       const res = await fetch("https://api.anthropic.com/v1/messages", {
@@ -287,11 +419,12 @@ ${email}`;
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           model: "claude-sonnet-4-20250514",
-          max_tokens: 800,
-          messages: [{ role: "user", content: prompt }]
+          max_tokens: 1500,
+          messages: [{ role: "user", content: msgContent }]
         })
       });
       const data = await res.json();
+      if (data.error) throw new Error(data.error.message);
       const raw = data.content.map(c => c.text || '').join('');
       const parsed = JSON.parse(raw.replace(/```json|```/g,'').trim());
 
@@ -302,6 +435,8 @@ ${email}`;
       document.getElementById('extractNotice').style.display = 'flex';
       toast('Fields extracted successfully');
     } catch(e) {
+      console.error(e);
+      document.getElementById('extractNotice').style.display = 'none';
       toast('Extraction failed — please fill fields manually', 'warn');
     }
 
@@ -309,6 +444,7 @@ ${email}`;
     content.innerHTML = '✦ Extract with AI';
   }
 
+  // ---- SAVE ----
   async function saveToSheet() {
     const g = id => document.getElementById(id).value.trim();
     if (!g('f_name') && !g('f_policy')) {
@@ -339,7 +475,7 @@ ${email}`;
       document.getElementById('saveStatus').innerHTML =
         '<div class="alert alert-success">✓ Claim saved to Google Sheet with unique ID! Open your sheet to verify.</div>';
       toast('Saved to Google Sheet');
-      clearFields();
+      clearAll();
       setTimeout(() => document.getElementById('saveStatus').innerHTML = '', 5000);
     } catch(e) {
       document.getElementById('saveStatus').innerHTML =
@@ -351,7 +487,8 @@ ${email}`;
     content.innerHTML = '↑ Save to Google Sheet';
   }
 
-  function clearFields() {
+  // ---- CLEAR ----
+  function clearAll() {
     ['f_ref','f_name','f_policy','f_insurer','f_losstype','f_amount','f_location','f_contact','f_surveyor','f_remarks'].forEach(id => {
       const el = document.getElementById(id); el.value = ''; el.classList.remove('filled');
     });
@@ -360,6 +497,9 @@ ${email}`;
     document.getElementById('f_status').value = 'Pending';
     document.getElementById('emailInput').value = '';
     document.getElementById('extractNotice').style.display = 'none';
+    uploadedFiles = [];
+    renderFileList();
+    document.getElementById('fileInput').value = '';
   }
 
   document.getElementById('f_date').value = new Date().toISOString().split('T')[0];
